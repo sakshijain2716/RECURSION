@@ -1,0 +1,27 @@
+//856 leetcode
+
+class Solution {
+public:
+     int i=0;     //global var 
+    int scoreOfParentheses(string s) {
+        int score=0;
+        while(i<s.size())
+        {
+            char curr = s[i];  //if () then i is at '('
+            i++;        //i comes to ')'
+            if(curr=='(')
+            {
+                if(s[i]==')')    //no more nested parenthesis
+                {
+                    score++;    
+                    i++;
+                }
+                 else           //(()())
+                score = score + 2*(scoreOfParentheses(s));
+            }
+            else         //if ye ')' ajata h phle to isscase me recursive function se return kra denge 
+            return score;        //hr nye recursive function mein score=0 hoga
+        }
+        return score;
+    }
+};
